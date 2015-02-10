@@ -10,19 +10,21 @@
 function Node(element) {
     this.element = element;
     this.next = null;
+    this.previous = null;
 }
 
 /**
- * 链表类
+ * 双向链表类
  * @constructor
  */
 function LList() {
     this.head = new Node("head");
     this.find = find;
     this.insert = insert;
-    this.findPrevious = findPrevious;
+    this.findLast = findLast;
     this.remove = remove;
     this.display = display;
+    this.dispReverse = dispReverse;
 }
 
 /**
@@ -47,6 +49,7 @@ function insert(newElement, item) {
     var newNode = new Node(newElement);
     var current = this.find(item);
     newNode.next = current.next;
+    newNode.previous = current;
     current.next = newNode;
 }
 
@@ -62,29 +65,39 @@ function display() {
 }
 
 /**
- * 找到元素为item的前一个节点
+ * 删除元素为item的节点
  * @param item
+ */
+function remove(item) {
+    var currNode = this.find(item);
+    if(currNode.next !== null) {
+        currNode.previous.next = currNode.next;
+        currNode.next.previous = currNode.previous;
+        currNode.next = null;
+        currNode.previous = null;
+    }
+}
+
+/**
+ * 查找最后一个结点
  * @returns {Node|*}
  */
-function findPrevious(item) {
+function findLast() {
     var currNode = this.head;
-    while((currNode.next.element !== item) && (currNode.next !== null)) {
+    while(!(currNode.next === null)) {
         currNode = currNode.next;
     }
     return currNode;
 }
 
 /**
- * 删除元素为item的节点
- * @param item
- * @returns {boolean}
+ * 逆向显示
  */
-function remove(item) {
-    var prevNode = this.findPrevious(item);
-    if(prevNode.next !== null) {
-        prevNode.next = prevNode.next.next;
-        return true;
-    }else {
-        return false;
+function dispReverse() {
+    var currNode = this.head;
+    currNode = this.findLast();
+    while(!(currNode.previous === null)) {
+        console.log(currNode.element);
+        currNode = currNode.previous;
     }
 }
