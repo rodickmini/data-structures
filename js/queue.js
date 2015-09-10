@@ -16,7 +16,6 @@ function Queue() {
 }
 
 
-
 /**
  * 入队
  * @param element
