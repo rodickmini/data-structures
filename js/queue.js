@@ -15,6 +15,8 @@ function Queue() {
     this.isEmpty = isEmpty;
 }
 
+
+
 /**
  * 入队
  * @param element

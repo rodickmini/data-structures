@@ -31,6 +31,8 @@ function pop() {
     return this.dataStore[--this.top];
 }
 
+
+
 /**
  * 返回当前栈顶元素
  * @returns {*}
