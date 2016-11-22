@@ -1,2 +1,2 @@
-# datastructuresalgorithmwithjavascript
-datastructures and algorithm with javascript
+# data structures
+data structures with javascript
